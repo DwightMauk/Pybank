@@ -1,0 +1,54 @@
+import os
+import csv
+
+path = os.getcwd()
+# C:\Users\Dwight\source\python\python-challenge\PyBank\pybank
+
+csvpath=os.path.join("..","..","python-challenge","PyBank","pybank","budget_data.csv")
+
+
+months = []
+revenue = []
+
+with open(csvpath, newline="") as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    for row in csvreader:
+
+        months.append(row[0])
+        revenue.append(int(row[1]))
+
+        total_months = len(months)
+        
+
+        greatest_inc = revenue[0]
+        greatest_dec = revenue[0]
+        total_revenue = 0
+
+        for r in range(len(revenue)):
+            if revenue[r] >= greatest_inc:
+                greatest_inc = revenue[r]
+                great_inc_month = months[r]
+            elif revenue[r] <= greatest_dec:
+                greatest_dec = revenue[r]
+                great_dec_month = months[r]
+            total_revenue += revenue[r]
+
+avg_change = (total_revenue/total_months)
+
+output = (
+    f"\nFinancial Analysis\n"
+    f"----------------------------\n"
+    f"Total Months: {total_months}\n"
+    f"Total Revenue: ${total_revenue}\n"
+    f"Average Revenue Change: ${avg_change}\n"
+    f"Greatest Increase in Revenue: {great_inc_month} (${greatest_inc})\n"
+    f"Greatest Decrease in Revenue: {great_dec_month} (${greatest_dec})")
+
+
+print(output)
+
+output_file = os.path.join("..","..","python-challenge","PyBank","pybank","budget_data.text")
+
+with open(output_file, "w") as txt_file:
+    txt_file.write(output)
