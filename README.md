@@ -9,3 +9,5 @@ The greatest increase in profits (date and amount) over the entire period
 The greatest decrease in losses (date and amount) over the entire period
 
 ![bank](bank1.PNG)
+
+![bank2](bank2.PMG)
